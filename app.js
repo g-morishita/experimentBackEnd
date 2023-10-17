@@ -30,10 +30,12 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.post("/save", (req, res) => {
-  console.log(
-    `${req.body.ID} is doing the experiment at ${Date.now().toString()}`,
-  );
+  const now = new Date();
+  console.log(`${req.body.ID} is doing the experiment at ${now.toISOString()}`);
   const userInput = req.body;
+  console.log(
+    `Data will be inserted ${JSON.stringify(userInput, undefined, 2)}`,
+  );
   let sql = `INSERT INTO pilot_individual_bandit_experiment VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
 
   db.run(
