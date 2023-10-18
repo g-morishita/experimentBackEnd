@@ -68,7 +68,7 @@ app.post("/save", (req, res) => {
         res.status(500).send("Error inserting data");
         return;
       }
-      res.send("Data inserted!");
+      res.send({msg: "Data Inserted!"});
     },
   );
 });
