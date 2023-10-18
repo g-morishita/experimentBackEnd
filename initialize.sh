@@ -24,8 +24,8 @@ npm install -y
 
 # Set the environmental variables
 export DATABASE_PORT=3389
-export MY_OWN_ID="http://45.113.235.128"
-export REACT_APP_DATABASE_URL="${MY_OWN_ID}:${DATABASE_PORT}"
+export YOUR_OWN_IP="http://45.113.235.128"
+export REACT_APP_DATABASE_URL="${YOUR_OWN_IP}:${DATABASE_PORT}"
 
 # Start the backend server
 node app.js

@@ -6,6 +6,7 @@ const sqlite3 = require("sqlite3").verbose();
 const app = express();
 const db = new sqlite3.Database("./pilotIndividualBanditExperiment.db");
 const PORT = process.env.DATABASE_PORT || 8080;
+const CLIENT_PORT = process.env.CLIENT_PORT || 3000;
 
 app.use(express.json()); // parse the json file that is sent from the React app.
 
@@ -15,7 +16,7 @@ const allowedOrigins = [
 ];
 
 if (process.env.YOUR_OWN_IP !== undefined) {
-    allowedOrigins.push(process.env.YOUR_OWN_IP);
+    allowedOrigins.push(process.env.YOUR_OWN_IP + `:${CLIENT_PORT}`);
 }
 
 const corsOptions = {
