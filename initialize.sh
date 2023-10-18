@@ -16,4 +16,4 @@ sudo apt install -y node # For ubuntu. If you use different OS, you should chang
 npm install -y
 
 # Start the backend server
-node api.js
+node app.js
