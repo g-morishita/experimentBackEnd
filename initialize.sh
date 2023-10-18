@@ -18,5 +18,9 @@ sqlite3 pilotIndividualBanditExperiment.db < createPilotIndividualBanditExperime
 sudo apt install -y nodejs npm # For ubuntu. If you use different OS, you should change an appropriate package manager.
 npm install -y
 
+# Set the environmental variables
+export DATABASE_PORT=3389
+export DATABASE_URL="http://172.26.129.176:${DATABASE_PORT}"
+
 # Start the backend server
 node app.js
