@@ -36,7 +36,7 @@ app.post("/save", (req, res) => {
   console.log(
     `Data will be inserted ${JSON.stringify(userInput, undefined, 2)}`,
   );
-  let sql = `INSERT INTO pilot_individual_bandit_experiment VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+  let sql = `INSERT INTO pilot_individual_bandit_experiment VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
 
   db.run(
     sql,
@@ -46,6 +46,7 @@ app.post("/save", (req, res) => {
       userInput.n_session,
       userInput.n_trial,
       userInput.reward_prob,
+      userInput.choice_index,
       userInput.reward,
       userInput.choice,
       userInput.rt,
