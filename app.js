@@ -5,7 +5,7 @@ const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 const db = new sqlite3.Database("./pilotIndividualBanditExperiment.db");
-const PORT = 3389; // process.env.DATABASE_PORT || 8080; TODO: env doest not work. FIX IT LATER.
+const PORT = process.env.DATABASE_PORT || 8080;
 
 app.use(express.json()); // parse the json file that is sent from the React app.
 
@@ -13,6 +13,10 @@ const allowedOrigins = [
   // Allow from this specific port on localhost
   // You can add allowed origins. Now, it's empty
 ];
+
+if (process.env.YOUR_OWN_IP !== undefined) {
+    allowedOrigins.push(process.env.YOUR_OWN_IP);
+}
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -30,7 +34,7 @@ const corsOptions = {
   },
 };
 
-if (allowedOrigins) {
+if (allowedOrigins.length !== 0) {
   app.use(cors(corsOptions));
 } else {
   app.use(cors());
