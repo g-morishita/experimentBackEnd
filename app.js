@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const { all } = require("express/lib/application");
 const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
@@ -8,7 +9,8 @@ const db = new sqlite3.Database("./pilotIndividualBanditExperiment.db");
 app.use(express.json()); // parse the json file that is sent from the React app.
 
 const allowedOrigins = [
-  "http://localhost:3000", // Allow from this specific port on localhost
+  // Allow from this specific port on localhost
+  // You can add allowed origins. Now, it's empty
 ];
 
 const corsOptions = {
@@ -27,7 +29,11 @@ const corsOptions = {
   },
 };
 
-app.use(cors(corsOptions));
+if (allowedOrigins) {
+  app.use(cors(corsOptions));
+} else {
+  app.use(cors());
+}
 
 app.post("/save", (req, res) => {
   const now = new Date();
