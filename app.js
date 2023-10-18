@@ -5,6 +5,7 @@ const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 const db = new sqlite3.Database("./pilotIndividualBanditExperiment.db");
+const PORT = process.env.DATABASE_PORT || 8080;
 
 app.use(express.json()); // parse the json file that is sent from the React app.
 
@@ -68,6 +69,6 @@ app.post("/save", (req, res) => {
   );
 });
 
-app.listen(8080, () => {
+app.listen(PORT, () => {
   console.log("Server is running on port 8080");
 });
