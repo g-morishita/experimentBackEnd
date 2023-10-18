@@ -24,7 +24,7 @@ npm install -y
 
 # Set the environmental variables
 export DATABASE_PORT=3389
-export DATABASE_URL="http://172.26.129.176:${DATABASE_PORT}"
+export REACT_APP_DATABASE_URL="http://172.26.129.176:${DATABASE_PORT}"
 
 # Start the backend server
 node app.js
