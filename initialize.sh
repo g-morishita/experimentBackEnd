@@ -4,7 +4,7 @@ sudo apt install -y sqlite3 nodejs npm
 
 # update nodeJS
 sudo npm install -g n
-n latest
+sudo n latest
 
 # create a new database.
 databaseName="pilotIndividualBanditExperiment.db"
