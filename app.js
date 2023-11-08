@@ -158,7 +158,7 @@ app.post("/individual_bandit_data", (req, res) => {
         return res.status(500).send({ error: "Database query failed" });
       }
       console.log(
-        `${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${req.body.ts}`,
+        `participant ${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${req.body.ts}`,
       );
       res.send({ experimentID: r.insertId });
     },
