@@ -255,7 +255,7 @@ app.post("/social_bandit_data_in_selection", (req, res) => {
             `participant ${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${req.body.ts}`,
           );
           console.log(
-            `face ${req.body.face_id} chose ${req.body.partner_choice} and get reward of ${req.body.partner_reward} at ${req.body.ts}`,
+            `face ${req.body.r[0].id} chose ${req.body.partner_choice} and get reward of ${req.body.partner_reward} at ${req.body.ts}`,
           );
           res.send({ result: r });
         },
