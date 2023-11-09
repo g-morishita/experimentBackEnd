@@ -7,7 +7,7 @@ const { DateTime } = require("luxon");
 const app = express();
 const connection = mysql.createConnection({
   host: "localhost",
-  user: "test",
+  user: process.env.MYSQL_USER || "test",
   password: process.env.MYSQL_PASSWORD || "testtest",
   database: process.env.DATABASE || "test",
   port: 3306,
