@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const { all } = require("express/lib/application");
 const mysql = require("mysql2");
+const { DateTime } = require("luxon");
 
 const app = express();
 const connection = mysql.createConnection({
@@ -150,7 +151,7 @@ app.post("/individual_bandit_data", (req, res) => {
       req.body.rt,
       req.body.choice_index,
       req.body.reward_prob,
-      req.body.ts,
+      DateTime.now().setZone("Australia/Melbourne").toString(),
     ],
     (e, r, f) => {
       if (e) {
@@ -158,7 +159,7 @@ app.post("/individual_bandit_data", (req, res) => {
         return res.status(500).send({ error: "Database query failed" });
       }
       console.log(
-        `participant ${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${req.body.ts}`,
+        `participant ${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${DateTime.now().setZone("Australia/Melbourne").toString()}`,
       );
       res.send({ experimentID: r.insertId });
     },
@@ -200,7 +201,7 @@ app.post("/social_bandit_data", (req, res) => {
       req.body.choice_index,
       req.body.reward_prob,
       req.body.face_id,
-      req.body.ts,
+      DateTime.now().setZone("Australia/Melbourne").toString(),
     ],
     (e, r, f) => {
       if (e) {
@@ -208,10 +209,10 @@ app.post("/social_bandit_data", (req, res) => {
         return res.status(500).send({ error: "Database query failed" });
       }
       console.log(
-        `participant ${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${req.body.ts}`,
+        `participant ${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${DateTime.now().setZone("Australia/Melbourne").toString()}`,
       );
       console.log(
-        `face ${req.body.face_id} chose ${req.body.partner_choice} and get reward of ${req.body.partner_reward} at ${req.body.ts}`,
+        `face ${req.body.face_id} chose ${req.body.partner_choice} and get reward of ${req.body.partner_reward} at ${DateTime.now().setZone("Australia/Melbourne").toString()}`,
       );
       res.send({ result: r });
     },
@@ -244,20 +245,20 @@ app.post("/social_bandit_data_in_selection", (req, res) => {
           req.body.choice_index,
           req.body.reward_prob,
           r[0].id,
-          req.body.ts,
+          DateTime.now().setZone("Australia/Melbourne").toString(),
         ],
-        (e, r, f) => {
-          if (e) {
-            console.log(e);
+        (e2, r2, f2) => {
+          if (e2) {
+            console.log(e2);
             return res.status(500).send({ error: "Database query failed" });
           }
           console.log(
             `participant ${req.body.participant_id} chose ${req.body.choice} and get reward of ${req.body.reward} at ${req.body.ts}`,
           );
           console.log(
-            `face ${req.body.r[0].id} chose ${req.body.partner_choice} and get reward of ${req.body.partner_reward} at ${req.body.ts}`,
+            `face ${r[0].id} chose ${req.body.partner_choice} and get reward of ${req.body.partner_reward} at ${req.body.ts}`,
           );
-          res.send({ result: r });
+          res.send({ result: r2 });
         },
       );
     },
@@ -277,7 +278,7 @@ app.post("/observation_data", (req, res) => {
       req.body.choice_index,
       req.body.reward_prob,
       req.body.face_id,
-      req.body.ts,
+      DateTime.now().setZone("Australia/Melbourne").toString(),
     ],
     (e, r, f) => {
       if (e) {
@@ -325,7 +326,7 @@ app.post("/selection_data", (req, res) => {
             : rightFaceId,
           leftFaceId,
           rightFaceId,
-          req.body.ts,
+          DateTime.now().setZone("Australia/Melbourne").toString(),
         ],
         (e, r, f) => {
           if (e) {
