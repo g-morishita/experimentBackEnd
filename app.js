@@ -124,7 +124,7 @@ app.post("/update_assignment", (req, res) => {
 app.post("/participants", (req, res) => {
   connection.query(
     "INSERT INTO participants (room_number, kind, start_time) VALUES (?, ?, ?)",
-    [req.body.room_number, req.body.kind, req.body.start_time],
+    [req.body.room_number, req.body.kind, DateTime.now().setZone("Australia/Melbourne").toString()],
     (e, r, f) => {
       if (e) {
         console.log(e);
@@ -348,7 +348,7 @@ app.post("/selection_data", (req, res) => {
 app.post("/complete", (req, res) => {
   connection.query(
     "UPDATE participants SET end_time = ? WHERE id = ? ",
-    [req.body.end_time, req.body.participant_id],
+    [DateTime.now().setZone("Australia/Melbourne").toString(), req.body.participant_id],
     (e, r, f) => {
       if (e) {
         console.log(e);
