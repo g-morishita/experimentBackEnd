@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const { all } = require("express/lib/application");
 const mysql = require("mysql2");
 const { DateTime } = require("luxon");
 
@@ -131,7 +130,7 @@ app.post("/participants", (req, res) => {
         return res.status(500).send({ error: "Database query failed" });
       }
       console.log(
-        `participant ${r.insertId} has started at ${req.body.start_time}`,
+        `participant ${r.insertId} has started at ${DateTime.now().setZone("Australia/Melbourne").toString()}`,
       );
       res.send({ userID: r.insertId });
     },
@@ -354,7 +353,7 @@ app.post("/complete", (req, res) => {
         console.log(e);
       }
       console.log(
-        `participant ${r.insertId} has ended at ${req.body.start_time}`,
+        `participant ${r.insertId} has ended`,
       );
       res.send({ result: r });
     },
